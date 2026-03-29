@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minijuego — Cursor AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="game-page">
+      <a href="index.html" class="game-back">← Volver al inicio</a>
+      <h1 class="game-title">Modo huevo</h1>
+      <p class="game-intro">
+        Toca el círculo blanco todas las veces que puedas antes de que se acabe
+        el tiempo.
+      </p>
+      <div class="game-hud">
+        <span id="score">Puntos: 0</span>
+        <span id="time">Tiempo: 20</span>
+      </div>
+      <div
+        id="field"
+        class="game-field"
+        aria-label="Área del minijuego"
+      >
+        <button
+          type="button"
+          id="target"
+          class="game-target is-hidden"
+          aria-label="Objetivo: tócalo para sumar puntos"
+        ></button>
+      </div>
+    </main>
+
+    <div id="overlay" class="game-overlay" aria-live="polite">
+      <div class="game-modal">
+        <div id="panel-start">
+          <p>Tienes 20 segundos. El círculo salta de sitio cada acierto.</p>
+          <div class="game-modal__actions">
+            <button type="button" class="btn-primary" id="btn-start">
+              Comenzar
+            </button>
+            <a href="index.html" class="btn-ghost">Salir</a>
+          </div>
+        </div>
+        <div id="panel-end" class="is-hidden">
+          <p id="final-text"></p>
+          <div class="game-modal__actions">
+            <button type="button" class="btn-primary" id="btn-again">
+              Jugar de nuevo
+            </button>
+            <a href="index.html" class="btn-ghost">Inicio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const DURATION = 20;
+        const field = document.getElementById("field");
+        const target = document.getElementById("target");
+        const scoreEl = document.getElementById("score");
+        const timeEl = document.getElementById("time");
+        const overlay = document.getElementById("overlay");
+        const panelStart = document.getElementById("panel-start");
+        const panelEnd = document.getElementById("panel-end");
+        const finalText = document.getElementById("final-text");
+        const btnStart = document.getElementById("btn-start");
+        const btnAgain = document.getElementById("btn-again");
+
+        let score = 0;
+        let timeLeft = DURATION;
+        let timerId = null;
+        let playing = false;
+
+        function moveTarget() {
+          const pad = 8;
+          const fw = field.clientWidth;
+          const fh = field.clientHeight;
+          const tw = target.offsetWidth || 48;
+          const th = target.offsetHeight || 48;
+          const rangeX = Math.max(0, fw - tw - pad * 2);
+          const rangeY = Math.max(0, fh - th - pad * 2);
+          const x = pad + Math.random() * rangeX;
+          const y = pad + Math.random() * rangeY;
+          target.style.left = x + "px";
+          target.style.top = y + "px";
+        }
+
+        function tick() {
+          timeLeft -= 1;
+          timeEl.textContent = "Tiempo: " + timeLeft;
+          if (timeLeft <= 0) {
+            endGame();
+          }
+        }
+
+        function endGame() {
+          playing = false;
+          if (timerId) {
+            clearInterval(timerId);
+            timerId = null;
+          }
+          target.disabled = true;
+          target.classList.add("is-hidden");
+          finalText.textContent =
+            "Fin de la ronda. Puntuación: " + score + " puntos.";
+          panelStart.classList.add("is-hidden");
+          panelEnd.classList.remove("is-hidden");
+          overlay.classList.remove("is-hidden");
+        }
+
+        function startGame() {
+          score = 0;
+          timeLeft = DURATION;
+          playing = true;
+          scoreEl.textContent = "Puntos: 0";
+          timeEl.textContent = "Tiempo: " + DURATION;
+          target.disabled = false;
+          target.classList.remove("is-hidden");
+          overlay.classList.add("is-hidden");
+          panelEnd.classList.add("is-hidden");
+          panelStart.classList.remove("is-hidden");
+          moveTarget();
+          if (timerId) clearInterval(timerId);
+          timerId = setInterval(tick, 1000);
+        }
+
+        target.addEventListener("click", function (e) {
+          e.stopPropagation();
+          if (!playing) return;
+          score += 1;
+          scoreEl.textContent = "Puntos: " + score;
+          moveTarget();
+        });
+
+        btnStart.addEventListener("click", startGame);
+
+        btnAgain.addEventListener("click", function () {
+          overlay.classList.add("is-hidden");
+          startGame();
+        });
+
+        window.addEventListener("resize", function () {
+          if (playing) moveTarget();
+        });
+      })();
+    </script>
+  </body>
+</html>
