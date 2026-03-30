@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cursor AI</title>
+    <meta
+      name="description"
+      content="Techline — tecnología al mejor precio. Auriculares, teclados, monitores y más."
+    />
+    <title>Techline — Tecnología al mejor precio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,16 +17,187 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="hero">
-      <h1 class="hero__title">Cursor AI</h1>
-      <p class="hero__description">
-        Editor con IA para escribir código de forma más rápida y clara.
-      </p>
-      <button type="button" class="hero__button">Empezar</button>
+    <header class="header">
+      <div class="header__inner">
+        <a href="#inicio" class="logo">Techline</a>
+        <nav class="nav" aria-label="Principal">
+          <a href="#productos" class="nav__link">Productos</a>
+          <a href="#beneficios" class="nav__link">Beneficios</a>
+          <a href="#contacto" class="nav__link">Contacto</a>
+        </nav>
+      </div>
+    </header>
 
-      <footer class="footer">
+    <main class="main" id="inicio">
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="hero__eyebrow">Mi tienda de tecnología</p>
+        <h1 id="hero-title" class="hero__title">Tecnología al mejor precio</h1>
+        <p class="hero__description">
+          Encontrá gadgets y equipos con envío rápido, precios claros y la
+          tranquilidad de comprar en un solo lugar. Simple, moderno y sin
+          vueltas.
+        </p>
+        <a href="#productos" class="hero__button">Comprar ahora</a>
+      </section>
+
+      <section class="section products" id="productos" aria-labelledby="products-title">
+        <div class="section__head">
+          <h2 id="products-title" class="section__title">Productos destacados</h2>
+          <p class="section__subtitle">
+            Elegí lo esencial para tu escritorio o tu día a día.
+          </p>
+        </div>
+
+        <div class="products__grid">
+          <article class="product-card">
+            <div class="product-card__media">
+              <img
+                class="product-card__img"
+                src="https://placehold.co/400x260/ebe4f5/5548a8/png?text=Auriculares"
+                alt="Auriculares Bluetooth"
+                width="400"
+                height="260"
+                loading="lazy"
+              />
+            </div>
+            <div class="product-card__body">
+              <h3 class="product-card__name">Auriculares Bluetooth</h3>
+              <p class="product-card__price" aria-label="Precio">$ 45.990</p>
+              <button
+                type="button"
+                class="product-card__btn js-buy"
+                data-product="Auriculares Bluetooth"
+              >
+                Comprar
+              </button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-card__media">
+              <img
+                class="product-card__img"
+                src="https://placehold.co/400x260/ebe4f5/5548a8/png?text=Teclado"
+                alt="Teclado mecánico"
+                width="400"
+                height="260"
+                loading="lazy"
+              />
+            </div>
+            <div class="product-card__body">
+              <h3 class="product-card__name">Teclado mecánico</h3>
+              <p class="product-card__price" aria-label="Precio">$ 62.500</p>
+              <button
+                type="button"
+                class="product-card__btn js-buy"
+                data-product="Teclado mecánico"
+              >
+                Comprar
+              </button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-card__media">
+              <img
+                class="product-card__img"
+                src="https://placehold.co/400x260/ebe4f5/5548a8/png?text=Mouse"
+                alt="Mouse ergonómico"
+                width="400"
+                height="260"
+                loading="lazy"
+              />
+            </div>
+            <div class="product-card__body">
+              <h3 class="product-card__name">Mouse ergonómico</h3>
+              <p class="product-card__price" aria-label="Precio">$ 28.900</p>
+              <button
+                type="button"
+                class="product-card__btn js-buy"
+                data-product="Mouse ergonómico"
+              >
+                Comprar
+              </button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-card__media">
+              <img
+                class="product-card__img"
+                src="https://placehold.co/400x260/ebe4f5/5548a8/png?text=Monitor"
+                alt="Monitor 24 pulgadas Full HD"
+                width="400"
+                height="260"
+                loading="lazy"
+              />
+            </div>
+            <div class="product-card__body">
+              <h3 class="product-card__name">Monitor 24&quot; Full HD</h3>
+              <p class="product-card__price" aria-label="Precio">$ 189.000</p>
+              <button
+                type="button"
+                class="product-card__btn js-buy"
+                data-product="Monitor 24 Full HD"
+              >
+                Comprar
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section
+        class="section benefits"
+        id="beneficios"
+        aria-labelledby="benefits-title"
+      >
+        <div class="section__head">
+          <h2 id="benefits-title" class="section__title">Por qué comprar en Techline</h2>
+          <p class="section__subtitle">
+            Comprá con la misma calma que en las grandes plataformas, sin perder
+            la simpleza.
+          </p>
+        </div>
+
+        <ul class="benefits__list">
+          <li class="benefits__item">
+            <span class="benefits__icon" aria-hidden="true">🚚</span>
+            <div class="benefits__text">
+              <h3 class="benefits__name">Envío gratis</h3>
+              <p class="benefits__desc">
+                En compras superiores a un monto mínimo, sin costos ocultos.
+              </p>
+            </div>
+          </li>
+          <li class="benefits__item">
+            <span class="benefits__icon" aria-hidden="true">🔒</span>
+            <div class="benefits__text">
+              <h3 class="benefits__name">Pago seguro</h3>
+              <p class="benefits__desc">
+                Transacciones protegidas y métodos de pago confiables.
+              </p>
+            </div>
+          </li>
+          <li class="benefits__item">
+            <span class="benefits__icon" aria-hidden="true">🛡️</span>
+            <div class="benefits__text">
+              <h3 class="benefits__name">Garantía</h3>
+              <p class="benefits__desc">
+                Soporte y garantía en productos seleccionados, como corresponde.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <footer class="footer" id="contacto">
+        <p class="footer__brand">
+          <strong>Techline</strong> — tecnología al mejor precio.
+        </p>
+
         <section class="footer__section" aria-labelledby="footer-social">
-          <h2 id="footer-social" class="footer__heading">Redes sociales</h2>
+          <h2 id="footer-social" class="footer__heading">Redes y novedades</h2>
           <nav class="footer__nav" aria-label="Redes sociales">
             <a
               class="footer__link"
@@ -52,42 +227,32 @@
               rel="noopener noreferrer"
               >YouTube</a
             >
-            <a
-              class="footer__link"
-              href="https://www.tiktok.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >TikTok</a
-            >
-            <a
-              class="footer__link"
-              href="https://github.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >GitHub</a
-            >
           </nav>
         </section>
 
         <section class="footer__section" aria-labelledby="footer-contact">
-          <h2 id="footer-contact" class="footer__heading">Contacto</h2>
+          <h2 id="footer-contact" class="footer__heading">Atención al cliente</h2>
           <nav class="footer__nav" aria-label="Formas de contacto">
-            <a
-              class="footer__link"
-              href="https://cursor.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Sitio web</a
+            <a class="footer__link" href="https://techline.example.com"
+              >Sitio web oficial</a
             >
-            <a
-              class="footer__link"
-              href="mailto:contacto@ejemplo.com"
-              >Correo electrónico</a
+            <a class="footer__link" href="mailto:hola@techline.store"
+              >hola@techline.store</a
             >
-            <a class="footer__link" href="tel:+34900000000">Teléfono</a>
+            <a class="footer__link" href="tel:+5411999887766">WhatsApp / Teléfono</a>
           </nav>
         </section>
+
+        <p class="footer__legal">© <span id="year"></span> Techline. Proyecto educativo.</p>
       </footer>
+
+      <div
+        id="toast"
+        class="toast"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      ></div>
 
       <a
         href="easter.html"
@@ -96,5 +261,27 @@
         title=""
       ></a>
     </main>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      (function () {
+        var toast = document.getElementById("toast");
+        var hideTimer;
+
+        document.querySelectorAll(".js-buy").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var name = btn.getAttribute("data-product") || "Producto";
+            toast.textContent =
+              "¡Listo! Demo: agregamos «" + name + "» al carrito.";
+            toast.classList.add("toast--visible");
+            clearTimeout(hideTimer);
+            hideTimer = setTimeout(function () {
+              toast.classList.remove("toast--visible");
+            }, 3200);
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
